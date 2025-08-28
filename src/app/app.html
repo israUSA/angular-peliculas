@@ -1,22 +1,10 @@
-<p>Hola mundo</p>
+<button class="btn btn-primary" (click)="clickBoton()">Clickeane</button>
+
+<p>En Cines</p>
+<app-listado-peliculas [peliculas]="peliculasEnCines" ></app-listado-peliculas>
+
+<p>Proximos Estrenos</p>
+<app-listado-peliculas [peliculas]="peliculasProximosEstrenos"></app-listado-peliculas>
 
 
-@for (pelicula of peliculas; track $index) {
-  <div class="contenedor-peliculas">
-    <div style="display: flex; flex-direction: row; gap: 10px;">
-      <div>
-        <img [ngSrc] = "pelicula.poster" [priority] = "$index === 0" width="170" height="252" alt="">
-      </div>
-      <div>
-        <p>{{$index + 1}} Pelicula: {{pelicula.titulo}}</p>
-        <p>Fecha de Lanzamiento: {{pelicula.fechaLanzamiento | date:"dd-MMMM-yyyy" | uppercase}}</p>
-        <p>Precio: {{pelicula.precio  | currency}}</p>
-      </div>
-    </div>
-  </div>
-}
-
-
-
-  <p>{{title}}</p>
-<p>El doble de 3 es {{duplicarNumero(3)}}</p>
+    
