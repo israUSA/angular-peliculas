@@ -1,9 +1,12 @@
 import { CurrencyPipe, DatePipe, NgOptimizedImage, UpperCasePipe } from '@angular/common';
 import { Component, Input, signal } from '@angular/core';
+import { ListadoGenerico } from "../../shared/componentes/listado-generico/listado-generico";
+import { MatIconModule } from "@angular/material/icon";
+
 
 @Component({
   selector: 'app-listado-peliculas',
-  imports: [DatePipe, CurrencyPipe, UpperCasePipe, NgOptimizedImage],
+  imports: [DatePipe, CurrencyPipe, UpperCasePipe, NgOptimizedImage, ListadoGenerico, ListadoGenerico, MatIconModule],
   templateUrl: './listado-peliculas.html',
   styleUrl: './listado-peliculas.css'
 })
@@ -30,40 +33,23 @@ export class ListadoPeliculasComponent {
           fechaLanzamiento: new Date('2016-05-03'),
           precio: 300.99,
           poster: 'https://upload.wikimedia.org/wikipedia/en/7/73/Moana_2_poster.jpg'
-        },
-        {
-          titulo: 'Bad Boys: Ride or Die',
-          fechaLanzamiento: new Date('2016-05-03'),
-          precio: 300.99,
-          poster: 'https://upload.wikimedia.org/wikipedia/en/8/8b/Bad_Boys_Ride_or_Die_%282024%29_poster.jpg'
-        },
-        {
-          titulo: 'Deadpool & Wolverine',
-          fechaLanzamiento: new Date('2016-05-03'),
-          precio: 300.99,
-          poster: 'https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Deadpool_%26_Wolverine_poster.jpg/220px-Deadpool_%26_Wolverine_poster.jpg'
-        },
-        {
-          titulo: 'Oppenheimer',
-          fechaLanzamiento: new Date('2016-05-03'),
-          precio: 300.99,
-          poster: 'https://upload.wikimedia.org/wikipedia/en/thumb/4/4a/Oppenheimer_%28film%29.jpg/220px-Oppenheimer_%28film%29.jpg'
-        },
-        {
-          titulo: 'The Flash',
-          fechaLanzamiento: new Date('2016-05-03'),
-          precio: 300.99,
-          poster: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/ed/The_Flash_%28film%29_poster.jpg/220px-The_Flash_%28film%29_poster.jpg'
         }
       ];
       nuevasPelis.push({
         titulo: 'Nueva Película',
         fechaLanzamiento: new Date('2025-08-28'),
         precio: 500.50,
-        poster: 'https://example.com/nueva-pelicula.jpg'
+        poster: null
       });
       return nuevasPelis;
     });
   }
+
+  removerPelicula(pelicula:any){
+    const indice = this.peliculas().findIndex((peliculaActual: any) => peliculaActual.titulo === pelicula.titulo);
+    this.peliculas().splice(indice,1);
+  }
+
+
 
 }

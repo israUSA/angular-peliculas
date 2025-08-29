@@ -1,22 +1,36 @@
 <button class="btn btn-primary" (click)="agregarPelicula()" >Agregar Película</button>
 
-@if (!peliculas()) {
-  <img src="loading.gif" alt="">
-} @else if(peliculas()?.length === 0){
-  <p>'No hay elementos</p>
-} @else{
-  @for (pelicula of peliculas(); track pelicula; let index = $index) {
-    <div class="contenedor-peliculas">
-      <div style="display: flex; flex-direction: row; gap: 10px;">
-        <div>
-          <img [ngSrc] = "pelicula.poster" [priority] = "$index === 0" width="170" height="252" alt="">
-        </div>
-        <div>
-          <p>{{$index + 1}} Pelicula: {{pelicula.titulo}}</p>
-          <p>Fecha de Lanzamiento: {{pelicula.fechaLanzamiento | date:"dd-MMMM-yyyy" | uppercase}}</p>
-          <p>Precio: {{pelicula.precio | currency}}</p>
+<app-listado-generico [listado]="peliculas">
+  
+  <ng-container vacio>
+    <span style= "color: red">No hay peliculas para tí</span>
+  </ng-container>
+  
+  <ng-container contenido>
+    @for (pelicula of peliculas(); track pelicula; let index = $index) {
+      <div class="contenedor-peliculas">
+        <div style="display: flex; flex-direction: row; gap: 10px;">
+          <div>
+            @if(pelicula.poster){
+              <img [ngSrc] = "pelicula.poster" [priority] = "$index === 0" width="170" height="252" alt="">
+            } @else {
+              <img src = "empty.jpg" width="170" height="252" alt="">
+            }
+          </div>
+          <div>
+            <p>{{$index + 1}} Pelicula: {{pelicula.titulo}}</p>
+            <p>Fecha de Lanzamiento: {{pelicula.fechaLanzamiento | date:"dd-MMMM-yyyy" | uppercase}}</p>
+            <p>Precio: {{pelicula.precio | currency}}</p>
+            <button class="btn btn-error" (click)="removerPelicula(pelicula)" >
+              <mat-icon>delete</mat-icon>
+              Remover Película</button>
+  
+          </div>
         </div>
       </div>
-    </div>
-  }
-}
+    }
+  </ng-container>
+  
+</app-listado-generico>
+
+  

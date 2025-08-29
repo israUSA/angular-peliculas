@@ -2,10 +2,12 @@ import { CurrencyPipe, DatePipe, UpperCasePipe, NgOptimizedImage } from '@angula
 import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ListadoPeliculasComponent } from "./peliculas/listado-peliculas/listado-peliculas";
+import { Menu } from "./shared/componentes/menu/menu";
+import { Rating } from "./shared/componentes/rating/rating";
 
 @Component({
   selector: 'app-root',
-  imports: [ListadoPeliculasComponent],
+  imports: [ListadoPeliculasComponent, Menu, Rating],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -17,22 +19,25 @@ export class App implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       console.log('tiempo')
-      this.peliculasEnCines.set (
-        [
-         {
-           titulo: 'Inside Out 2',
-           fechaLanzamiento: new Date(),
-           precio: 1400.99,
-           poster: 'https://upload.wikimedia.org/wikipedia/en/f/f7/Inside_Out_2_poster.jpg?20240514232832'
-         },
-         {
-           titulo: 'Moana 2',
-           fechaLanzamiento: new Date('2016-05-03'),
-           precio: 300.99,
-           poster: 'https://upload.wikimedia.org/wikipedia/en/7/73/Moana_2_poster.jpg'
-         },
-       ]
-      )
+      // this.peliculasEnCines.set (
+      //   [
+      //    {
+      //      titulo: 'Inside Out 2',
+      //      fechaLanzamiento: new Date(),
+      //      precio: 1400.99,
+      //      poster: 'https://upload.wikimedia.org/wikipedia/en/f/f7/Inside_Out_2_poster.jpg?20240514232832'
+      //    },
+      //    {
+      //      titulo: 'Moana 2',
+      //      fechaLanzamiento: new Date('2016-05-03'),
+      //      precio: 300.99,
+      //      poster: 'https://upload.wikimedia.org/wikipedia/en/7/73/Moana_2_poster.jpg'
+      //    },
+      //  ]
+      // )
+
+      this.peliculasEnCines.set([])
+      
       this.peliculasProximosEstrenos.set(
         [
           {
@@ -68,6 +73,10 @@ export class App implements OnInit {
   clickBoton(){
     alert('Gracias por hacerme click!')
 
+  }
+  
+  procesarVoto(voto: number){
+    alert(`calificacion otorgada: ${voto} `)
   }
     
  

@@ -1,2 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui";
+html, body { height: 100%; }
+body {height: fit-content;  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+

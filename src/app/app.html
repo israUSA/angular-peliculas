@@ -1,10 +1,17 @@
-<button class="btn btn-primary" (click)="clickBoton()">Clickeane</button>
+<app-menu></app-menu>
 
-<p>En Cines</p>
-<app-listado-peliculas [peliculas]="peliculasEnCines" ></app-listado-peliculas>
 
-<p>Proximos Estrenos</p>
-<app-listado-peliculas [peliculas]="peliculasProximosEstrenos"></app-listado-peliculas>
+<div class="peliculas">
+  <app-rating [maximoRating]="5" (votado)="procesarVoto($event)"></app-rating>
+  
+  <p>En Cines</p>
+  <app-listado-peliculas [peliculas]="peliculasEnCines" ></app-listado-peliculas>
+  
+  <p>Proximos Estrenos</p>
+  <app-listado-peliculas [peliculas]="peliculasProximosEstrenos"></app-listado-peliculas>
+
+</div>
+
 
 
     
