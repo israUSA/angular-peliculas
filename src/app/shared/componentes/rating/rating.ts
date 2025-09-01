@@ -40,10 +40,18 @@ export class Rating implements OnInit {
 
   manejarClick(indice: number){
 
-    this.ratingSeleccionado = indice + 1;
-    this.ratingAnterior = this.ratingSeleccionado;
 
-    this.votado.emit(this.ratingSeleccionado);
+    if ( this.ratingSeleccionado == this.ratingAnterior) {
+      this.ratingSeleccionado = 0; 
+      this.ratingAnterior = 0;
+      
+    } else {
+      this.ratingSeleccionado = indice + 1;
+      this.ratingAnterior = this.ratingSeleccionado;
+      this.votado.emit(this.ratingSeleccionado);
+
+    }
+
 
   }
 
